@@ -49,9 +49,9 @@ All of this is standard Rego, but for most basic queries you can even guess your
 
 ## Query
 
-The query is any valid Rego, the JSON document you are querying will be represented in the query by the variable `input`.  
-Because Rego policies can evaluate to a complex output containing multiple results (result set), and regogo aspires to return a simple value, we build the returned object by picking the value of the last expression defined for each result in the evaluation result set. If there are multiple results in the result set, then the returned object is an array.  
-This convention allows for multi part queries, while remaining simple API.  
+The query is any valid Rego query, the JSON document you are querying will be represented in the query by the variable `input`.
+
+Rego can return complex output containing multiple results, and regogo aspires to simplify that. Therefore the return value for `Get` is built by picking the value of the last expression in each result in the result set. If there are multiple values to return, the return value is an array. This convention allows for multi part queries, while maintaining a simple API.  
 **You don't need to worry about any of this if your queries are simple one liners, like `input.array[i].sub`.**
 
 For a tutorial on Rego, see [here](https://www.openpolicyagent.org/docs/latest/#rego).  
