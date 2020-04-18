@@ -61,6 +61,11 @@ For a complete reference of Rego, see [here](https://www.openpolicyagent.org/doc
 
 The returned object is a `regogo.Result` type that just encapsulates the returned value and provides convenience methods to use it, such as getting the value as string, number, bool, array, etc.
 
+# Performance
+
+As expected, regogo performs a lot worse than dedicated and optimized json querying libraries. When [benchmarked](benchmark_test.go) against comparable libraries, gjson was the fastest, gabs was x20 slower than gjson and regogo was x100 slower than gabs. There's probably some optimization to be done on regogo's side, but I don't expect it to ever come close to a dedicated json query library.  
+regogo is best suited for scenarios that are not performance sensitive, or that the benefit from the expressive query language outweighs the performance price.
+
 # Background
 
 I think working with JSON in Go is a pain, and none of the available libraries did it right (closest was gjson).  
