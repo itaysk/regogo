@@ -61,6 +61,10 @@ For a complete reference of Rego, see [here](https://www.openpolicyagent.org/doc
 
 The returned object is a `regogo.Result` type that just encapsulates the returned value and provides convenience methods to use it, such as getting the value as string, number, bool, array, etc.
 
+# Prepare and Eval Separation
+
+Sometimes you might want to run the same query over different inputs. In this case it is wasteful to construct the internal structures for every input because they are identical (same query). In this case you can prepare the query once, using `regogo.New()`, keep the resulting object and use it to evaluate many different inputs using `Regogo.Get()`.
+
 # Performance
 
 As expected, regogo performs a lot worse than dedicated and optimized json querying libraries. When [benchmarked](benchmark_test.go) against comparable libraries, gjson was the fastest, gabs was x20 slower than gjson and regogo was x100 slower than gabs. There's probably some optimization to be done on regogo's side, but I don't expect it to ever come close to a dedicated json query library.  
